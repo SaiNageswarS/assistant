@@ -1,0 +1,38 @@
+<ion-toolbar primary>
+    <ion-title>
+        {{chatRoom.name}}
+    </ion-title>
+    <ion-buttons start>
+        <button (click)="dismiss()">
+            <span primary showWhen="ios">Cancel</span>
+            <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+        </button>
+    </ion-buttons>
+</ion-toolbar>
+
+<div class="has-header chat" id="chat-view">
+    <ul class="chat-body">
+        <li *ngFor="#message of messages">
+            <img src="img/chat/profile_icon.svg" [ngClass]="{pullright: (message.sender===sender), pullleft: (message.sender!==sender)}">    
+            <div class="chat-bubble"
+                 [ngClass]="{pullright: (message.sender===sender),
+                            pullleft: (message.sender!==sender)}">
+                <p [innerHTML]="message.content"></p>
+                <span class="ack">
+                    <ion-icon name="time"></ion-icon>{{message.sentOn | date: 'shortTime'}}
+                    <span *ngIf="message.read && message.sender === sender">
+                        <ion-icon name="done-all"></ion-icon>R
+                    </span>
+                </span>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<ion-toolbar position="bottom" light class="chat-send-message">
+    <div class="message-text-holder" (click)="openKeyboard()">
+        <!--<input type="text" [(ngModel)]="messageText.value" id="text-body" (focus)="UIRefresh(false)">-->
+        <span id="richChatText" contenteditable="true"></span>
+        </div>
+    <div class="message-send-holder"><button light (click)="sendMessage()"><ion-icon name="send"></ion-icon></button></div>
+</ion-toolbar>

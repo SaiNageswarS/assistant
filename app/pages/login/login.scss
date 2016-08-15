@@ -1,0 +1,26 @@
+.login {
+  .background-task  {
+    height: 100%;
+    padding-top: 40%;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 22px;
+    color: #ea7c7c;
+
+    .background-task-icon {
+      font-size: 150px;
+      display: block;
+    }
+
+    &.task-finished {
+      color: #ffa539;
+
+      button {
+        margin-top: 15%;
+        width: 70%;
+        margin-left: 15%;
+        height: 46px;
+      }
+    }
+  }
+}

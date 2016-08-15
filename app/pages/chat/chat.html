@@ -1,0 +1,43 @@
+
+<ion-navbar *navbar primary>
+  <ion-title>
+    Chat
+  </ion-title>
+  <ion-buttons start>
+    <button (click)="syncContacts()" *ngIf="!isSyncing" class="toolbar-btn">
+      <ion-icon name="refresh"></ion-icon>
+    </button>
+  </ion-buttons>
+</ion-navbar>
+
+<ion-content class="chat-rooms">
+  <div class="spinner" *ngIf="isSyncing">
+    <div>
+      <ion-spinner secondary></ion-spinner>
+    </div>
+    <div> Syncing Contacts </div>
+  </div>
+
+  <ion-list *ngIf="!isSyncing">
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="img/chat/maleAsst.png">
+      </ion-avatar>
+      <h2>Assistant</h2>
+      <p>Your personal secretary</p>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="!isSyncing">
+    <ion-list-header>
+      Contacts
+    </ion-list-header>
+    <ion-item *ngFor="#chatRoom of chatRooms" (click)="openChatRoom(chatRoom)">
+      <ion-avatar item-left>
+        <img src="img/chat/profile_icon.svg">
+      </ion-avatar>
+      <h2>{{chatRoom.name}}</h2>
+      <p>{{chatRoom.phone}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>

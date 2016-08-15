@@ -1,0 +1,20 @@
+<ion-navbar *navbar primary>
+    <ion-title>Login</ion-title>
+</ion-navbar>
+
+<ion-content padding class="login">
+    <div class="background-task" *ngIf="state.value!=='init' && state.value!=='syncFinished'">
+        <ion-icon name="log-in" *ngIf="state.value === 'login'"
+                    class="background-task-icon"></ion-icon>
+        <ion-icon name="contacts" *ngIf="state.value === 'sync'"
+                  class="background-task-icon"></ion-icon>
+        {{stateMessages[state.value]}}
+    </div>
+
+    <div class="background-task task-finished" *ngIf="state.value==='syncFinished'">
+        <ion-icon name="contacts"  class="background-task-icon"></ion-icon>
+        {{stateMessages[state.value]}}
+
+        <button (click)="navigateToTabsPage()" block secondary> Continue </button>
+    </div>
+</ion-content>
